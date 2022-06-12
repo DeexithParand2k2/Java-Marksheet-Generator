@@ -63,19 +63,23 @@ public class marksheet extends JFrame{
       DefaultTableModel tableModel = new DefaultTableModel();
       JTable table = new JTable(tableModel);
 
-      tableModel.addColumn("Language/ Technology");
-      tableModel.addColumn("Text Tutorial");
+      tableModel.addColumn("Sem No.");
+      tableModel.addColumn("Course Code");
       tableModel.addColumn("Course Title");
-      tableModel.addColumn("Views");
-      tableModel.addRow(new Object[] { "NodeJS", "No", "Yes", "2350"});
-      tableModel.addRow(new Object[] { "MVC", "Yes", "No", "1500"});
-      tableModel.addRow(new Object[] { "ASP.NET", "Yes", "Yes", "3400"});
-      tableModel.addRow(new Object[] { "F#", "Yes", "No", "7890"});
-      tableModel.addRow(new Object[] { "", "", "***End of Statement***", ""});
+      tableModel.addColumn("Credits");
+      tableModel.addColumn("Grade");
+      tableModel.addColumn("Result");
+      tableModel.addRow(new Object[] { "01", "191CSC404T", "PROG IN JAVA", "3", "A", "PASS"});
+      tableModel.addRow(new Object[] { "01", "191CSC404T", "PROG IN JAVA", "3", "A", "PASS"});
+      tableModel.addRow(new Object[] { "01", "191CSC404T", "PROG IN JAVA", "3", "A", "PASS"});
+      tableModel.addRow(new Object[] { "01", "191CSC404T", "PROG IN JAVA", "3", "A", "PASS"});
+      tableModel.addRow(new Object[] { "01", "191CSC404T", "PROG IN JAVA", "3", "A", "PASS"});
+      tableModel.addRow(new Object[] { "", "", "***End of Statement***", "", "", ""});
 
       //row height customization
       table.setRowHeight(table.getRowHeight() + 20);
       table.getColumnModel().getColumn(2).setPreferredWidth(400);
+      table.getColumnModel().getColumn(1).setPreferredWidth(250);
 
       //alignment in table cells
       DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -83,6 +87,8 @@ public class marksheet extends JFrame{
       table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
       table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
       table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+      table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+      table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
       //text field
       JLabel lDob = new JLabel("DOB | ");
@@ -152,14 +158,17 @@ public class marksheet extends JFrame{
       Image dimgSign = sign.getScaledInstance(100, 50, Image.SCALE_DEFAULT); 
       ImageIcon imageIconSign = new ImageIcon(dimgSign);
       JLabel picLabelSign = new JLabel(imageIconSign); 
+      picLabelSign.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
       JLabel signText = new JLabel(" CONTROLLER OF EXAMINATIONS ");
       signText.setForeground(Color.gray);
+      signText.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
       BufferedImage stamp = ImageIO.read(new File("stamp.png"));
       Image dimgStamp = stamp.getScaledInstance(100, 50, Image.SCALE_DEFAULT); 
       ImageIcon imageIconStamp = new ImageIcon(dimgStamp);
       JLabel picLabelStamp = new JLabel(imageIconStamp); 
+      picLabelStamp.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
       JLabel lIssueDate = new JLabel("DATE OF ISSUE | 14/11/2002");
       lIssueDate.setForeground(Color.gray);
