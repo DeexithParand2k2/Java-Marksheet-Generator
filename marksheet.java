@@ -47,7 +47,7 @@ public class marksheet extends JFrame{
 
       //frame creation
       marksheet frame = new marksheet();
-      frame.setTitle("Hello AnnaUniversity Degree Sheet");
+      frame.setTitle("ANNA UNIVERSITY DEGREE SHEET");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       //TITLE Table 1
@@ -90,6 +90,11 @@ public class marksheet extends JFrame{
       JTextArea dobArea = new JTextArea("14-11-2002");    
       dobArea.setEditable(false);
 
+      JLabel lName = new JLabel("CANDIDATE NAME | ");
+      //lDob.setPreferredSize(new Dimension(150,200));
+      JTextArea nameArea = new JTextArea("DEEXITH PARANDAMAN");    
+      nameArea.setEditable(false);
+
       JLabel lGender = new JLabel("GENDER | ");
       //lGender.setPreferredSize(new Dimension(150,200));
       JTextArea genArea = new JTextArea("MALE");    
@@ -113,6 +118,7 @@ public class marksheet extends JFrame{
       JTextArea regulationArea = new JTextArea("2019");    
       regulationArea.setEditable(false);
 
+      nameArea.setBorder(BorderFactory.createCompoundBorder(colArea.getBorder(),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
       colArea.setBorder(BorderFactory.createCompoundBorder(colArea.getBorder(),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
       regulationArea.setBorder(BorderFactory.createCompoundBorder(colArea.getBorder(),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
       dobArea.setBorder(BorderFactory.createCompoundBorder(colArea.getBorder(),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
@@ -121,7 +127,7 @@ public class marksheet extends JFrame{
       dateArea.setBorder(BorderFactory.createCompoundBorder(colArea.getBorder(),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
       //icon
-      Image icon = Toolkit.getDefaultToolkit().getImage("Easwari_Engineering_College_logo.png");
+      Image icon = Toolkit.getDefaultToolkit().getImage("Anna_University_Logo.svg.png");
 
 
       //image left
@@ -140,41 +146,83 @@ public class marksheet extends JFrame{
       ImageIcon imageIconRight = new ImageIcon(dimgRight);
       JLabel picLabelRight = new JLabel(imageIconRight);  
 
+
+      //final part (Signature, Stamp, Date of issue) ((width,height))
+      BufferedImage sign = ImageIO.read(new File("sign.png"));
+      Image dimgSign = sign.getScaledInstance(100, 50, Image.SCALE_DEFAULT); 
+      ImageIcon imageIconSign = new ImageIcon(dimgSign);
+      JLabel picLabelSign = new JLabel(imageIconSign); 
+
+      JLabel signText = new JLabel(" CONTROLLER OF EXAMINATIONS ");
+      signText.setForeground(Color.gray);
+
+      BufferedImage stamp = ImageIO.read(new File("stamp.png"));
+      Image dimgStamp = stamp.getScaledInstance(100, 50, Image.SCALE_DEFAULT); 
+      ImageIcon imageIconStamp = new ImageIcon(dimgStamp);
+      JLabel picLabelStamp = new JLabel(imageIconStamp); 
+
+      JLabel lIssueDate = new JLabel("DATE OF ISSUE | 14/11/2002");
+      lIssueDate.setForeground(Color.gray);
+
       //panel where all components are going to be added
       JPanel p = new JPanel();
 
+      JPanel top = new JPanel();
+      JPanel mid1 = new JPanel();
+      JPanel mid2 = new JPanel();
+      JPanel mid3 = new JPanel();
+      JPanel bottom = new JPanel();
+      JPanel signPanel = new JPanel();
+
       //adding all components in the panel
-      p.add(picLabel);
-      p.add(l);
-      p.add(picLabelRight);
+      signPanel.add(signText);
 
-      p.add(lDob);
-      p.add(dobArea);
+      bottom.add(picLabelStamp);
+      bottom.add(lIssueDate);
+      bottom.add(picLabelSign);
 
-      p.add(lGender);
-      p.add(genArea);
+      top.add(picLabel);
+      top.add(l);
+      top.add(picLabelRight);
 
-      p.add(lRegno);
-      p.add(regNoArea);
+      mid1.add(lName);
+      mid1.add(nameArea);
 
-      p.add(lDate);
-      p.add(dateArea);
+      mid2.add(lDob);
+      mid2.add(dobArea);
 
-      p.add(lColName);
-      p.add(colArea);
+      mid1.add(lRegno);
+      mid1.add(regNoArea);
 
-      p.add(regulationName);
-      p.add(regulationArea);
+      mid2.add(lGender);
+      mid2.add(genArea);
 
+      mid2.add(lDate);
+      mid2.add(dateArea);
+
+      mid3.add(lColName);
+      mid3.add(colArea);
+
+      mid3.add(regulationName);
+      mid3.add(regulationArea);
+
+      //subpanels
+      p.add(top);
+      p.add(mid1);
+      p.add(mid2);
+      p.add(mid3);
+
+      //this table is directly added wihtout inserting in a subpanel
       p.add(new JScrollPane(table));
+      p.add(bottom);
+      p.add(signPanel);
 
       //added panel to frame
       frame.add(p);
 
       //frame visibility
       frame.setIconImage(icon); 
-      //550-570
-      frame.setSize(550,1000);
+      frame.setSize(600,1000);
       frame.setVisible(true);
    }
 }
